@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <conio.h>
+void main(){
+    int ms,ps,nop,np,rempages,i,j,x,y,pa,offset;
+    int s[10],fno[10][20];
+    printf("Enter memory size:");
+    scanf("%d",&ms);
+    printf("Enter page size");
+    scanf("%d",&ps);
+    nop=ms/ps;
+    printf("No. of pages available --%d",nop);
+    printf("Enter number of processes");
+    scanf("%d",&np);
+    rempages=nop;
+    for(i=1;i<=np;i++){
+        printf("Enter no. of pages required forp[%d]",i);
+        scanf("%d",&s[i]);
+        if(s[i]>rempages){
+            printf("Memory full");
+            break;
+        }
+        rempages-=s[i];
+    printf("Enter page table for p[%d]--",i);
+    for(j=0;j<s[i];j++)
+        scanf("%d",&fno[i][j]);
+    }
+    printf("Enter logiical addressa to find physical address");
+    scanf("%d %d %d",&x,&y,&offset);
+    if(x>np || y>=s[i] || offset>=ps){
+        printf("Invalid");
+    }
+    else{
+        pa=fno[x][y]*ps+offset;
+        printf("Physical address:%d",pa);
+    }
+}
